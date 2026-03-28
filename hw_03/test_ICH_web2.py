@@ -27,9 +27,9 @@ def is_visible_link_by_text(driver, find_text):
 
 def test_01_logo(driver):
     driver.get("https://itcareerhub.de/ru")
-    sleep(0.5)
+    # sleep(0.5)
 
-    logo = driver.find_element(By.CLASS_NAME, "tn-elem__19217104631710153310155")
+    logo = driver.find_element(By.CLASS_NAME, "tn-atom__img.t-img.loaded")
     assert logo.is_displayed()
 
 def test_02_link_programm(driver):
@@ -41,20 +41,26 @@ def test_03_link_payments(driver):
     assert is_visible_link_by_text(driver, find_text)
 
 def test_04_link_news(driver):
-    find_text = "ru"
+    # нет такого на сайте
+    find_text = "Новости"
     # assert is_visible_link_by_text(driver, find_text)
-
-
 
 def test_05_link_about(driver):
     find_text = "О нас"
     assert is_visible_link_by_text(driver, find_text)
-
 
 def test_06_link_reviews(driver):
     find_text = "Отзывы"
     assert is_visible_link_by_text(driver, find_text)
 
 def test_07_link_selector_language(driver):
-    find_text = "ru"
-    assert is_visible_link_by_text(driver, find_text)
+    # find_text = "ru"
+    # assert is_visible_link_by_text(driver, find_text)
+
+    driver.get("https://itcareerhub.de/ru")
+
+    selector_ru = driver.find_element(By.CSS_SELECTOR, "[data-elem-id='1710152827519']")
+    assert selector_ru.is_displayed()
+
+    selector_de = driver.find_element(By.CSS_SELECTOR, "[data-elem-id='1710152941400']")  # tn-atom
+    assert selector_de.is_displayed()
